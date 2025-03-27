@@ -3,8 +3,8 @@ import { GET, POST } from '@/src/config/ApiService';
 import { Client, Message, IFrame } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import { useContext } from 'react';
-const WEBSOCKET_URL = 'https://team03-api.cyvietnam.id.vn/ws';
-const API_URL = 'https://team03-api.cyvietnam.id.vn';
+const WEBSOCKET_URL = 'http://localhost:3000/ws';
+const API_URL = 'http://localhost:3000';
 
 export interface OrderResponse {
     status: number;
