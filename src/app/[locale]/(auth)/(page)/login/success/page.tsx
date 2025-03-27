@@ -30,7 +30,7 @@ const Success = () => {
             maxAge: 60 * 60 * 24 * 7
         });
         setUserStore(userState.id, userState.name, userState.userName, userState.email, userState.roleName);
-        window.location.href=('https://team03.cyvietnam.id.vn/');
+        window.location.href=('http://localhost:3000');
     }, [router, setUserStore]);
 
     return null

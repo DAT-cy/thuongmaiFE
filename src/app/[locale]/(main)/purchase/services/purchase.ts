@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { GET, POST } from '@/src/config/ApiService';
 import { Client, Message, IFrame } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-
+import { useContext } from 'react';
 const WEBSOCKET_URL = 'https://team03-api.cyvietnam.id.vn/ws';
 const API_URL = 'https://team03-api.cyvietnam.id.vn';
 
@@ -80,7 +80,7 @@ export interface StatusChangeRequest {
 
 export const fetchUserOrders = async (params: { userId: string; shippingStatus?: string }): Promise<OrderResponse> => {
     const { userId, shippingStatus = "0" } = params;
-    
+
     try {
         const response: AxiosResponse<any> = await GET(`/v1/api/user-tracking/${userId}/ship-status?shippingStatus=${shippingStatus}`);
 
@@ -88,8 +88,8 @@ export const fetchUserOrders = async (params: { userId: string; shippingStatus?:
             throw new Error(`API error: ${response?.data?.message || 'Unknown error'}`);
         }
 
-        const orders = Array.isArray(response.data) 
-            ? response.data 
+        const orders = Array.isArray(response.data)
+            ? response.data
             : response.data?.content || response.data?.data || [];
 
         return {
@@ -173,7 +173,7 @@ export const submitFeedback = async (
         formData.append('productId', productId.toString());
         formData.append('rate', rating.toString());
         formData.append('content', content);
-        
+
         if (files && files.length > 0) {
             files.forEach((file) => {
                 formData.append('files', file);
@@ -192,9 +192,9 @@ export const submitFeedback = async (
         return { success: true };
     } catch (error) {
         console.error('Error submitting feedback:', error);
-        return { 
-            success: false, 
-            message: error instanceof Error ? error.message : 'Failed to submit review' 
+        return {
+            success: false,
+            message: error instanceof Error ? error.message : 'Failed to submit review'
         };
     }
 };
@@ -215,9 +215,9 @@ export const updateOrderTracking = async (orderDetailId: number): Promise<{ succ
         return { success: true };
     } catch (error) {
         console.error('Error updating order tracking:', error);
-        return { 
-            success: false, 
-            message: error instanceof Error ? error.message : 'Failed to update order tracking' 
+        return {
+            success: false,
+            message: error instanceof Error ? error.message : 'Failed to update order tracking'
         };
     }
 };
@@ -229,7 +229,7 @@ export const buyAgain = async (userId: number, productId: number, quantity: numb
             productId: productId,
             quantity: quantity
         });
-        
+
         if (!response || (response.status !== 200 && response.status !== 201)) {
             throw new Error(`API error: ${response?.data?.message || 'Unknown error'}`);
         }

@@ -37,7 +37,7 @@ const LoginPage = () => {
         setIsLoading(true);
         try {
             if (provider === 'google') {
-                window.location.href = 'https://localhost:8080/oauth2/authorization/google';
+                window.location.href = 'http://localhost:8080/oauth2/authorization/google';
             }
         } catch (error) {
             console.error('Login error:', error);
