@@ -67,16 +67,20 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     const handleLogout = useCallback(() => {
         Cookies.remove('token');
         localStorage.removeItem('user');
-        router.push('/login')
+        router.push('/login');
     }, []);
 
     return (
         <div className="layout-topbar">
-            <div className="cursor-pointer layout-topbar-logo">
-                <img className="w-[50px] h-[50px] rounded-sm object-cover"  src="/layout/images/home-page/GRThree.png" alt="Logo" />
+            <div className="cursor-pointer layout-topbar-logo" onClick={() => (window.location.href = 'http://localhost:3000/en')}>
+                <img className="w-[50px] h-[50px] rounded-sm object-cover" src="/layout/images/home-page/GRThree.png" alt="Logo" />
                 <span className="text-xl font-medium ml-2">{t('SellerChannel')}</span>
             </div>
 
+            {/*<div className="border-3 cursor-pointer" onClick={() => router.push('/')}>*/}
+            {/*    <img className="w-[50px] height-[50px] rounded-sm object-cover"*/}
+            {/*         src="/layout/images/home-page/GRThree.png" alt="" />*/}
+            {/*</div>*/}
             <button ref={menubuttonRef} type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onMenuToggle} aria-label="Toggle Menu">
                 <i className="pi pi-bars" />
             </button>
