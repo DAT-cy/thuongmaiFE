@@ -1,6 +1,7 @@
+'use client';
 import React from 'react';
-import { 
-    CheckCircleOutlined, 
+import {
+    CheckCircleOutlined,
     CloseCircleOutlined,
     SyncOutlined,
     FileTextOutlined,
@@ -11,6 +12,8 @@ import {
     ExclamationCircleOutlined
 } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
+
+
 
 interface OrderDetailsProps {
     orderDetail: any;
@@ -54,9 +57,9 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderDetail, showCancelButt
             <div className="p-3 sm:p-4">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center border-b pb-4 mb-4">
                     <div className="w-full sm:w-32 h-48 sm:h-32 mb-4 sm:mb-0 sm:mr-4 border rounded-lg overflow-hidden">
-                        <img 
-                            src={orderDetail?.orderDetails?.[0]?.skuDto?.image || 'https://via.placeholder.com/150'} 
-                            alt="Product Image" 
+                        <img
+                            src={orderDetail?.orderDetails?.[0]?.skuDto?.image || 'https://via.placeholder.com/150'}
+                            alt="Product Image"
                             className="w-full h-full object-cover"
                         />
                     </div>
@@ -69,11 +72,11 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderDetail, showCancelButt
                                 <span className="mr-2">{t('orderDetails.variant')}:</span>
                                 <span className="font-semibold">
                                     {[
-                                        orderDetail?.orderDetails?.[0]?.skuDto?.option1?.value?.name || 
-                                        orderDetail?.orderDetails?.[0]?.skuDto?.option1?.name || 
+                                        orderDetail?.orderDetails?.[0]?.skuDto?.option1?.value?.name ||
+                                        orderDetail?.orderDetails?.[0]?.skuDto?.option1?.name ||
                                         t('shippingAddress.notUpdated'),
-                                        orderDetail?.orderDetails?.[0]?.skuDto?.option2?.value?.name || 
-                                        orderDetail?.orderDetails?.[0]?.skuDto?.option2?.name || 
+                                        orderDetail?.orderDetails?.[0]?.skuDto?.option2?.value?.name ||
+                                        orderDetail?.orderDetails?.[0]?.skuDto?.option2?.name ||
                                         t('shippingAddress.notUpdated')
                                     ].filter(item => item !== t('shippingAddress.notUpdated')).join(' - ')}
                                 </span>
@@ -94,16 +97,16 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderDetail, showCancelButt
                         <div className="flex flex-row items-center gap-2">
                             {orderDetail?.orderDetails?.[0]?.skuDto?.oldPrice !== orderDetail?.orderDetails?.[0]?.skuDto?.newPrice && (
                                 <span className="line-through text-gray-500 text-sm sm:text-base flex items-center">
-                                    {new Intl.NumberFormat('vi-VN', { 
-                                        style: 'currency', 
-                                        currency: 'VND' 
+                                    {new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND'
                                     }).format(orderDetail?.orderDetails?.[0]?.skuDto?.oldPrice * (orderDetail?.orderDetails?.[0]?.quantity || 1) || 0)}
                                 </span>
                             )}
                             <span className="font-bold text-primary-text text-base sm:text-lg flex items-center">
-                                {new Intl.NumberFormat('vi-VN', { 
-                                    style: 'currency', 
-                                    currency: 'VND' 
+                                {new Intl.NumberFormat('vi-VN', {
+                                    style: 'currency',
+                                    currency: 'VND'
                                 }).format(orderDetail?.orderDetails?.[0]?.skuDto?.newPrice * (orderDetail?.orderDetails?.[0]?.quantity || 1) || 0)}
                             </span>
                         </div>
@@ -132,9 +135,9 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderDetail, showCancelButt
                                 </button>
                             )}
                             <span className="text-primary-text mt-1 sm:mt-0">
-                                {new Intl.NumberFormat('vi-VN', { 
-                                    style: 'currency', 
-                                    currency: 'VND' 
+                                {new Intl.NumberFormat('vi-VN', {
+                                    style: 'currency',
+                                    currency: 'VND'
                                 }).format(orderDetail?.orderDetails?.[0]?.skuDto?.newPrice * (orderDetail?.orderDetails?.[0]?.quantity || 1) || 0)}
                             </span>
                         </div>
@@ -172,7 +175,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderDetail, showCancelButt
                         })()}
                     </div>
                     <span className="text-sm sm:text-base text-gray-600">
-                        {orderDetail?.orderDetails?.[0]?.createdAt ? 
+                        {orderDetail?.orderDetails?.[0]?.createdAt ?
                             new Intl.DateTimeFormat(window.location.pathname.split('/')[1] === 'vi' ? 'vi-VN' : window.location.pathname.split('/')[1] === 'en' ? 'en-US' : 'ko-KR', {
                                 year: 'numeric',
                                 month: 'long',
@@ -188,4 +191,4 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderDetail, showCancelButt
     );
 };
 
-export default OrderDetails; 
+export default OrderDetails;

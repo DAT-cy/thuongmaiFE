@@ -62,15 +62,15 @@ export type WebSocketHandlers = {
 
 export const connectWebSocket = (userId: string, handlers: WebSocketHandlers) => {
     try {
-        console.log('Starting WebSocket connection to:', 'https://team03-api.cyvietnam.id.vn/ws');
-        
-        const socket = new SockJS('https://team03-api.cyvietnam.id.vn/ws');
+        console.log('Starting WebSocket connection to:', 'http://localhost:8080/ws');
+
+        const socket = new SockJS('http://localhost:8080/ws');
         const stompClient = Stomp.over(socket);
 
         const onConnected = () => {
             console.log('WebSocket Connected Successfully');
             console.log('Subscribing to /note/notify channel');
-            
+
             stompClient.subscribe('/note/notify', (frame: StompFrame) => {
                 console.log('Received WebSocket message:', frame);
                 try {
@@ -78,7 +78,7 @@ export const connectWebSocket = (userId: string, handlers: WebSocketHandlers) =>
                     console.log('Parsed notification:', notification);
                     console.log('Current userId:', userId);
                     console.log('Notification shopId:', notification.shopId);
-                    
+
                     if (notification.shopId === parseInt(userId)) {
                         console.log('Notification matches userId, calling handler');
                         handlers.onNotification(notification);
@@ -99,9 +99,9 @@ export const connectWebSocket = (userId: string, handlers: WebSocketHandlers) =>
         };
 
         stompClient.debug = () => {};
-        
+
         stompClient.connect({}, onConnected, onError);
-        
+
         return {
             client: stompClient,
             disconnect: () => {

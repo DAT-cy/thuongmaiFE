@@ -3,7 +3,7 @@ import { Client, IMessage } from '@stomp/stompjs';
 import useChatStore from '@/src/app/[locale]/(main)/stores/useChatStore';
 
 export const createStompClient = (senderId: string, onMessageReceived: (message: any) => void, onConnect: () => void, onDisconnect: () => void): Client => {
-    const socket = new SockJS('https://team03-api.cyvietnam.id.vn/ws');
+    const socket = new SockJS('http://localhost:8080/ws');
     const client = new Client({
         webSocketFactory: () => socket,
         onConnect: () => {

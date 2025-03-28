@@ -2,7 +2,7 @@ import { GET } from '@/src/config/ApiService';
 import { Client, Message, IFrame } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
-const WEBSOCKET_URL = 'https://team03-api.cyvietnam.id.vn/ws';
+const WEBSOCKET_URL = 'http://localhost:8080/ws';
 
 export interface OrderStatusMessage {
     orderId: number;
@@ -139,7 +139,7 @@ export const initializeWebSocket = (
 };
 
 export const sendStatusUpdate = (
-  client: Client, 
+  client: Client,
   message: OrderStatusMessage
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
@@ -171,4 +171,4 @@ export const sendStatusUpdate = (
   });
 };
 
-export default fetchOrderDetails; 
+export default fetchOrderDetails;

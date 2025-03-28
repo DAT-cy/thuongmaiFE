@@ -72,7 +72,7 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
 
     return (
         <div className="layout-topbar">
-            <div className="cursor-pointer layout-topbar-logo" onClick={() => (window.location.href = 'http://localhost:3000/en')}>
+            <div className="cursor-pointer layout-topbar-logo" onClick={() => (window.location.href = 'http://localhost:3000')}>
                 <img className="w-[50px] h-[50px] rounded-sm object-cover" src="/layout/images/home-page/GRThree.png" alt="Logo" />
                 <span className="text-xl font-medium ml-2">{t('SellerChannel')}</span>
             </div>
